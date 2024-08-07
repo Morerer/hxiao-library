@@ -1,15 +1,15 @@
 <template>
   <div class="container mt-5">
     <div class="row justify-content-center">
-      <div class="col-md-8">
+      <div class="col-12 col-md-10 col-lg-8">
         <h1 class="text-center">User Information Form / Credentials</h1>
         <form @submit.prevent="submitForm">
           <div class="row mb-3">
-            <div class="col-md-6">
+            <div class="col-12 col-md-6">
               <label for="username" class="form-label">Username</label>
               <input type="text" class="form-control" id="username" v-model="formData.username" />
             </div>
-            <div class="col-md-6">
+            <div class="col-12 col-md-6">
               <label for="password" class="form-label">Password</label>
               <input
                 type="password"
@@ -96,7 +96,7 @@ const submittedCards = ref([])
 
 const submitForm = () => {
   submittedCards.value.push({ ...formData.value })
-  clearForm() // 提交后清空表单
+  clearForm()
 }
 
 const clearForm = () => {
