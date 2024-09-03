@@ -1,50 +1,54 @@
-<script setup>
-// import HelloWorld from './components/HelloWorld.vue'
-// import TheWelcome from './components/TheWelcome.vue'
-// import JSON from './components/JSON.vue'
-import LoginForm from './components/LoginForm.vue'
-</script>
-
 <template>
-  <header>
-    <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
-
-    <div class="wrapper">
-      <!-- <HelloWorld msg="You did it!" /> -->
-    </div>
-  </header>
-  <!-- <JSON /> -->
-  <!-- <main>
-    <TheWelcome />
-  </main> -->
-  <LoginForm />
+  <div id="app">
+    <nav class="navbar">
+      <router-link to="/" class="btn btn-primary">Home (Week 5)</router-link>
+      <router-link v-if="isAuthenticated" to="/about" class="btn btn-primary">About</router-link>
+      <router-link v-if="!isAuthenticated" to="/login" class="btn btn-secondary">Login</router-link>
+      <button v-if="isAuthenticated" @click="logout" class="btn btn-danger">Logout</button>
+    </nav>
+    <router-view />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script setup>
+import { isAuthenticated } from './router'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const logout = () => {
+  isAuthenticated.value = false
+  router.push('/login')
+}
+</script>
+
+<style>
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.navbar .btn {
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+.navbar .btn:hover {
+  background-color: #0056b3;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.navbar .btn-secondary {
+  background-color: #6c757d;
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.navbar .btn-danger {
+  background-color: #dc3545;
 }
 </style>
