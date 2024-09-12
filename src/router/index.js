@@ -11,13 +11,13 @@ export const isAuthenticated = ref(false)
 
 const routes = [
   {
-    path: '/FireLogin',
-    name: 'FireLogin',
+    path: '/FirebaseLogin',
+    name: 'FirebaseLogin',
     component: FirebaseSigninView
   },
   {
-    path: '/FireRegister',
-    name: 'FireRegister',
+    path: '/FirebaseRegister',
+    name: 'FirebaseRegister',
     component: FirebaseRegisterView
   },
   {
@@ -50,9 +50,9 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !isAuthenticated.value) {
-    next('/access-denied')
+    next('/login')
   } else {
-    next() //
+    next()
   }
 })
 

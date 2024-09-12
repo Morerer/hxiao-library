@@ -6,6 +6,16 @@
       </div>
     </div>
 
+    <div class="row justify-content-center mt-4">
+      <div class="col-12 col-md-10 col-lg-8 text-center">
+        <button @click="goToFirebaseLogin" class="btn btn-primary me-3">Firebase Login</button>
+        <button @click="goToFirebaseRegister" class="btn btn-secondary">Firebase Register</button>
+        <button v-if="isAuthenticated" @click="firebaseLogout" class="btn btn-danger mt-3">
+          Firebase Logout
+        </button>
+      </div>
+    </div>
+
     <div class="row justify-content-center">
       <div class="col-12 col-md-10 col-lg-8">
         <form @submit.prevent="submitForm">
@@ -150,8 +160,31 @@
 
 <script setup>
 import { ref } from 'vue'
-import DataTable from 'primevue/datatable'
-import Column from 'primevue/column'
+import { getAuth, signOut } from 'firebase/auth'
+import { useRouter } from 'vue-router'
+import { isAuthenticated } from '@/router'
+
+const router = useRouter()
+const auth = getAuth()
+
+const goToFirebaseLogin = () => {
+  router.push('/FirebaseLogin')
+}
+
+const goToFirebaseRegister = () => {
+  router.push('/FirebaseRegister')
+}
+
+const firebaseLogout = async () => {
+  try {
+    await signOut(auth)
+    isAuthenticated.value = false
+    router.push('/login')
+    console.log('User logged out successfully.')
+  } catch (error) {
+    console.error('Error logging out:', error)
+  }
+}
 
 const formData = ref({
   username: '',
