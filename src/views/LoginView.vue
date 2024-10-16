@@ -52,6 +52,6 @@ const handleLogin = () => {
 
 .error {
   color: red;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 </style>
