@@ -8,18 +8,13 @@
       </div>
     </div>
 
-    <!-- The <main> tag in HTML is used to specify the main content of a document -->
     <main>
-      <!-- If there are no data returned, then skip rendering the information -->
       <div v-if="weatherData">
-        <!-- Display the weather data attribute returned from API -->
         <h2>{{ weatherData.name }}, {{ weatherData.sys.country }}</h2>
         <div>
-          <!-- The image source of the weather icon will be coming from a function called iconUrl -->
           <img :src="iconUrl" alt="Weather Icon" />
           <p>{{ temperature }} °C</p>
         </div>
-        <!-- weather[0] means the current weather -->
         <span>{{ weatherData.weather[0].description }}</span>
       </div>
     </main>
@@ -29,7 +24,8 @@
 <script>
 import axios from 'axios'
 
-const apikey = 'Follow 10.1.2 to obtain your API key'
+// 使用实际的 API 密钥
+const apikey = '1eea699fb5dd3f1c6654d60352f8b226'
 
 export default {
   name: 'weatherView',
@@ -42,14 +38,12 @@ export default {
     }
   },
   computed: {
-    // Calculate temperature in Celsius format
     temperature() {
       return this.weatherData ? Math.floor(this.weatherData.main.temp - 273) : null
     },
-    // Get the current weather icon using the API link
     iconUrl() {
       return this.weatherData
-        ? `http://api.openweathermap.org/img/w/${this.weatherData.weather[0].icon}.png`
+        ? `https://api.openweathermap.org/img/w/${this.weatherData.weather[0].icon}.png`
         : null
     }
   },
@@ -61,7 +55,7 @@ export default {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(async (position) => {
           const { latitude, longitude } = position.coords
-          const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apikey}`
+          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apikey}`
           await this.fetchWeatherData(url)
         })
       }
@@ -76,7 +70,7 @@ export default {
     },
     async searchByCity() {
       try {
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${this.city}&appid=${apikey}`
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.city}&appid=${apikey}`
         await this.fetchWeatherData(url)
       } catch (error) {
         console.error('Error searching by city:', error)
