@@ -6,10 +6,35 @@ import AccessDeniedView from '../views/AccessDeniedView.vue'
 import { ref } from 'vue'
 import FirebaseSigninView from '@/views/FirebaseSigninView.vue'
 import FirebaseRegisterView from '@/views/FirebaseRegisterView.vue'
+import AddBookView from '@/views/AddBookView.vue'
+import GetBookCountView from '@/views/GetBookCountView.vue'
+import WeatherView from '@/views/WeatherView.vue'
+import CountBookAPI from '@/views/CountBookAPI.vue'
+import GetAllBookAPI from '@/views/GetAllBookAPI.vue'
 
 export const isAuthenticated = ref(false)
 
 const routes = [
+  {
+    path: '/GetAllBooks',
+    name: 'GetAllBookAPI',
+    component: GetAllBookAPI
+  },
+  {
+    path: '/WeatherCheck',
+    name: 'WeatherCheck',
+    component: WeatherView
+  },
+  {
+    path: '/CountBookAPI',
+    name: 'CountBookAPI',
+    component: CountBookAPI
+  },
+  {
+    path: '/addbook',
+    name: '/AddBook',
+    component: AddBookView
+  },
   {
     path: '/FirebaseLogin',
     name: 'FirebaseLogin',
@@ -19,6 +44,11 @@ const routes = [
     path: '/FirebaseRegister',
     name: 'FirebaseRegister',
     component: FirebaseRegisterView
+  },
+  {
+    path: '/GetBookCount',
+    name: 'GetBookCount',
+    component: GetBookCountView
   },
   {
     path: '/',

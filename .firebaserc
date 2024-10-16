@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "staging": "week7-hao",
+    "default": "week7-hao"
+  },
+  "targets": {},
+  "etags": {}
+}
