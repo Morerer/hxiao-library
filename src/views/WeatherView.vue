@@ -24,7 +24,7 @@
 <script>
 import axios from 'axios'
 
-// 使用实际的 API 密钥
+// 使用你的实际 API 密钥
 const apikey = '1eea699fb5dd3f1c6654d60352f8b226'
 
 export default {
