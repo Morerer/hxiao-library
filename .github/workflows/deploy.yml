@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # 监听 main 分支上的提交
+      - main
 
 jobs:
   build-and-deploy:
@@ -25,7 +25,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.1.4
+        uses: JamesIves/github-pages-deploy-action@v4 # 使用最新的 v4 版本
         with:
           branch: gh-pages # 部署到 gh-pages 分支
-          folder: dist # 部署的文件夹，Vite 的默认打包输出目录是 dist
+          folder: dist # 部署文件夹
