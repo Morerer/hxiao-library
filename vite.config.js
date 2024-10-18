@@ -15,5 +15,7 @@ export default defineConfig({
     rollupOptions: {
       external: ['primevue']
     }
-  }
+  },
+  // 添加 base 配置
+  base: process.env.NODE_ENV === 'production' ? '/hxiao-library/' : '/'
 })

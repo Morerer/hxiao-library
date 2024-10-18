@@ -74,7 +74,8 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  // 修改为使用 process.env.BASE_URL
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 
